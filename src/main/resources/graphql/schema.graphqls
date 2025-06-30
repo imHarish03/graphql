@@ -14,7 +14,11 @@ type Query {
   allEmployees: [Employee]
   employeeById(id: ID): Employee
   employeesByDepartmentId(departmentId: ID!): [Employee]
-	
+}
+
+
+type Mutation {
+  createEmployee(name: String!, email: String!, departmentId: ID!): Employee
 }
 
 

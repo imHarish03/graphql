@@ -1,5 +1,7 @@
 package io.lab.imHarish03;
 
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -21,30 +23,33 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Create departments
-        Department engineering = Department.builder().name("Engineering").build();
-        Department hr = Department.builder().name("Human Resources").build();
-        Department marketing = Department.builder().name("Marketing").build();
-        Department finance = Department.builder().name("Finance").build();
-        Department it = Department.builder().name("IT Support").build();
+    	
+        if (departmentRepository.count() == 0 && employeeRepository.count() == 0) {
+            // Create departments
+            Department engineering = Department.builder().name("Engineering").build();
+            Department hr = Department.builder().name("Human Resources").build();
+            Department marketing = Department.builder().name("Marketing").build();
+            Department finance = Department.builder().name("Finance").build();
+            Department it = Department.builder().name("IT Support").build();
 
-        departmentRepository.save(engineering);
-        departmentRepository.save(hr);
-        departmentRepository.save(marketing);
-        departmentRepository.save(finance);
-        departmentRepository.save(it);
+            departmentRepository.saveAll(List.of(engineering, hr, marketing, finance, it));
 
-        // Create employees
-        employeeRepository.save(new Employee(null, "Alice", "alice@example.com", engineering));
-        employeeRepository.save(new Employee(null, "Bob", "bob@example.com", hr));
-        employeeRepository.save(new Employee(null, "Charlie", "charlie@example.com", marketing));
-        employeeRepository.save(new Employee(null, "David", "david@example.com", finance));
-        employeeRepository.save(new Employee(null, "Eve", "eve@example.com", it));
-        employeeRepository.save(new Employee(null, "Frank", "frank@example.com", engineering));
-        employeeRepository.save(new Employee(null, "Grace", "grace@example.com", hr));
-        employeeRepository.save(new Employee(null, "Heidi", "heidi@example.com", marketing));
-        employeeRepository.save(new Employee(null, "Ivan", "ivan@example.com", finance));
-        employeeRepository.save(new Employee(null, "Judy", "judy@example.com", it));
+            // Create employees
+            employeeRepository.save(new Employee(null, "Alice", "alice@example.com", engineering));
+            employeeRepository.save(new Employee(null, "Bob", "bob@example.com", hr));
+            employeeRepository.save(new Employee(null, "Charlie", "charlie@example.com", marketing));
+            employeeRepository.save(new Employee(null, "David", "david@example.com", finance));
+            employeeRepository.save(new Employee(null, "Eve", "eve@example.com", it));
+            employeeRepository.save(new Employee(null, "Frank", "frank@example.com", engineering));
+            employeeRepository.save(new Employee(null, "Grace", "grace@example.com", hr));
+            employeeRepository.save(new Employee(null, "Heidi", "heidi@example.com", marketing));
+            employeeRepository.save(new Employee(null, "Ivan", "ivan@example.com", finance));
+            employeeRepository.save(new Employee(null, "Judy", "judy@example.com", it));
+
+            System.out.println("✔️ Sample data loaded.");
+        } else {
+            System.out.println("ℹ️ Sample data already present. Skipping insert.");
+        }
     }
 
 }
