@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "d33e6660-de82-4e31-9470-4c3957296bf6",
+		"name": "GraphQL_Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19855715",
+		"_collection_link": "https://planetary-trinity-104216.postman.co/workspace/My-Workspace~55358e6f-0976-4f11-82f7-9adb224fc1a9/collection/19855715-d33e6660-de82-4e31-9470-4c3957296bf6?action=share&source=collection_link&creator=19855715"
+	},
+	"item": [
+		{
+			"name": "CreateWIthJSON",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"query\": \"mutation CreateEmp($name: String!, $email: String!, $deptId: ID!) { createEmployee(name: $name, email: $email, departmentId: $deptId) { id name email department { id name } } }\",\r\n  \"variables\": {\r\n    \"name\": \"raj\",\r\n    \"email\": \"raj@example.com\",\r\n    \"deptId\": 1\r\n  }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"query\": \"mutation { createEmployee(name: \\\"anu\\\", email: \\\"anu@example.com\\\", departmentId: 1) { id name email department { name } } }\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"query\": \"mutation UpdateEmployee($input: EmployeeInput!) { updateEmployee(input: $input) { id name email department { id name } } }\",\r\n  \"variables\": {\r\n    \"input\": {\r\n      \"id\": 1,\r\n      \"name\": \"Hariharan R\",\r\n      \"email\": \"harish03@lab.io\",\r\n      \"departmentId\": 3\r\n    }\r\n  }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEmployeeList with limits",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"query\": \"query { allEmployees(page: 0, size: 2) { id name email department { id name } } }\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

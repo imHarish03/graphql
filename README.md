@@ -210,6 +210,6 @@ java -jar build/libs/graphql-demo-0.0.1-SNAPSHOT.jar
 
 **Hariharan R**  
 GitHub: [@imHarish03](https://github.com/imHarish03)  
-Email: your.email@example.com
+Email: harishhari302@gmail.com
 
 ---
