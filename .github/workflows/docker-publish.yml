@@ -27,4 +27,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: your_dockerhub_username/imharish-app:latest
+          tags: harishhari302/demo-gradle:latest
