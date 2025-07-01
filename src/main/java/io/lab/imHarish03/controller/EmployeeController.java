@@ -2,6 +2,8 @@ package io.lab.imHarish03.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -20,8 +22,9 @@ public class EmployeeController {
 	}
 
 	@QueryMapping
-	public List<Employee> allEmployees() {
-		return employeeService.getAllEmployees();
+	public List<Employee> allEmployees(@Argument int page, @Argument int size) {
+	    Pageable pageable = PageRequest.of(page, size);
+	    return employeeService.getAllEmployees(pageable);
 	}
 
 	@QueryMapping
@@ -33,10 +36,10 @@ public class EmployeeController {
 	public Employee createEmployee(@Argument String name, @Argument String email, @Argument Long departmentId) {
 		return employeeService.createEmployee(name, email, departmentId);
 	}
-	
+
 	@QueryMapping
 	public List<Employee> employeesByDepartmentId(@Argument Long departmentId) {
-	    return employeeService.getEmployeesByDepartmentId(departmentId);
+		return employeeService.getEmployeesByDepartmentId(departmentId);
 	}
 
 }

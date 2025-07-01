@@ -3,6 +3,7 @@ package io.lab.imHarish03.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import io.lab.imHarish03.entity.Department;
@@ -21,8 +22,8 @@ public class EmployeeService {
 		this.departmentRepository = departmentRepository;
 	}
 
-	public List<Employee> getAllEmployees() {
-		return employeeRepository.findAll();
+	public List<Employee> getAllEmployees(Pageable pageable) {
+	    return employeeRepository.findAll(pageable).getContent();
 	}
 
 	public Optional<Employee> getEmployeeById(Long id) {
