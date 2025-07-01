@@ -2,7 +2,7 @@ name: Build and Push Docker Image
 
 on:
   push:
-    branches: [main]
+    branches: [ "**" ]  # ✅ Trigger on any branch push
 
 jobs:
   docker:
