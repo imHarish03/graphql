@@ -10,6 +10,13 @@ type Employee {
   department: Department
 }
 
+input EmployeeInput {
+  id: ID
+  name: String
+  email: String
+  departmentId: ID
+}
+
 type Query {
   allEmployees(page: Int = 0, size: Int = 10): [Employee]
   employeeById(id: ID): Employee
@@ -19,6 +26,7 @@ type Query {
 
 type Mutation {
   createEmployee(name: String!, email: String!, departmentId: ID!): Employee
+  updateEmployee(input: EmployeeInput!): Employee
 }
 
 

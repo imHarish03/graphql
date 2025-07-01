@@ -10,6 +10,7 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 import io.lab.imHarish03.entity.Employee;
+import io.lab.imHarish03.entity.EmployeeInput;
 import io.lab.imHarish03.service.EmployeeService;
 
 @Controller
@@ -23,8 +24,8 @@ public class EmployeeController {
 
 	@QueryMapping
 	public List<Employee> allEmployees(@Argument int page, @Argument int size) {
-	    Pageable pageable = PageRequest.of(page, size);
-	    return employeeService.getAllEmployees(pageable);
+		Pageable pageable = PageRequest.of(page, size);
+		return employeeService.getAllEmployees(pageable);
 	}
 
 	@QueryMapping
@@ -40,6 +41,12 @@ public class EmployeeController {
 	@QueryMapping
 	public List<Employee> employeesByDepartmentId(@Argument Long departmentId) {
 		return employeeService.getEmployeesByDepartmentId(departmentId);
+	}
+
+
+	@MutationMapping
+	public Employee updateEmployee(@Argument("input") EmployeeInput input) {
+		return employeeService.updateEmployee(input);
 	}
 
 }
